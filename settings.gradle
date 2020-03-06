@@ -1,0 +1,8 @@
+rootProject.name = 'pocforever'
+include 'modules:main'
+findProject(':modules:main')?.name = 'main'
+include 'modules:logistic'
+findProject(':modules:logistic')?.name = 'logistic'
+include 'modules:configuration'
+findProject(':modules:configuration')?.name = 'configuration'
+

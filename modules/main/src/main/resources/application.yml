@@ -1,0 +1,55 @@
+server:
+  port: 9091
+
+spring:
+  application:
+    name: pocforever
+  cache:
+    enabled: true
+    type: simple
+  output:
+    ansi:
+      enabled: ALWAYS
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    driverClassName: com.p6spy.engine.spy.P6SpyDriver
+    platform: postgresql
+    initialization-mode: always
+    url: jdbc:p6spy:postgresql://localhost:8765/kovan
+    username: KOVAN
+    password: kovan12345
+    testWhileIdle: true
+    testOnBorrow: true
+    validationQuery: SELECT 1
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+      idle-timeout: 10000
+      pool-name: JpaHikariCP
+      maxLifetime: 2000000
+      connectionTimeout: 30000
+    sql-script-encoding: UTF-8
+  sleuth:
+    enabled: false
+  jpa:
+    showSql: true
+    generateDdl: false
+    properties:
+      hibernate:
+        jdbc.time_zone: UTC
+        temp:
+          use_jdbc_metadata_defaults: false
+        enable_lazy_load_no_trans: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      namingStrategy: org.hibernate.cfg.DefaultNamingStrategy
+      naming:
+        implicitStrategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyHbmImpl
+        physicalStrategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+      ddl-auto: none
+    open-in-view: false
+  jackson.date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
+
+
